@@ -1,2 +1,52 @@
+# Virtual Environment
 venv/
-models/resnet50_checkpoint.pth
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Dataset & uploads
+dataset/
+uploads_dl/
+
+# Models & outputs
+models/*.pth
+models/*.pt
+models/*.h5
+models/*.onnx
+models/*.pb
+
+models/*.png
+models/*.jpg
+models/*.jpeg
+models/*.csv
+models/*.json
+models/*.log
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# VS Code & IDE
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build / cache
+.cache/
