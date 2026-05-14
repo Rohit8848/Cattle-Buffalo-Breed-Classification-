@@ -14,7 +14,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from src.breed_info import BREED_INFO
 from src.inference_dl import load_efficientnet, predict_efficientnet
-from src.detect import detect_cattle
 
 
 # ------------------ PATH SETUP ------------------
@@ -473,20 +472,10 @@ def predict():
         return {"error": "No image provided"}, 400
 
     try:
-        # Step 1: Detect cattle in the image first
-        crop_path = detect_cattle(image_input)
-        if crop_path is None:
-            return {"error": "No cattle detected in the image. Please upload a valid cattle photo."}, 400
-
-        # Step 2: Classify the detected crop
-        labels, probs = predict_efficientnet(crop_path, model_tuple, topk=3)
+        labels, probs = predict_efficientnet(image_input, model_tuple, topk=3)
 
         results = []
         max_prob = probs[0]
-
-        # Step 3: Reject if confidence is too low
-        if max_prob < 0.30:
-            return {"error": "Cattle Undetected. Please upload the image of Cattle."}, 400
 
         if max_prob > 0.80:
             k = 1
